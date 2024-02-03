@@ -40,7 +40,7 @@ module.exports = {
       },
       backgroundImage: {
         'hero-pattern':
-          "url('https://i.ibb.co/MkvLDfb/Rectangle-4389.png')",
+          "url('https://www.ibm.com/content/dam/connectedassets-adobe-cms/worldwide-content/creative-assets/s-migr/ul/g/af/3a/ibm-db2-leadspace.component.xl.ts=1705510695938.png/content/adobe-cms/us/en/topics/nosql-databases/_jcr_content/root/leadspace')",
       },
     },
   },
