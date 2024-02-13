@@ -3,7 +3,7 @@ import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import { FiSettings } from 'react-icons/fi';
 import { TooltipComponent } from '@syncfusion/ej2-react-popups';
 
-import { Navbar, Footer, Sidebar, ThemeSettinf } from './components';
+import { Navbar, Footer, Sidebar, ThemeSettinf, ThemeSettings } from './components';
 import { Ecommerce, Orders, Calendar, Employees, Stacked, Pyramid, Customers, Kanban, Area, Bar, Pie, Financial, ColorPicker, ColorMapping, Editor, Line } from './pages';
 
 import { useStateContext } from './contexts/contextProvider';
@@ -11,15 +11,15 @@ import './App.css';
 
 
 const App = () => {
-  const { activeMenu } = useStateContext();
+  const { activeMenu, themeSettings, setThemeSettings, currentColor, currentMode } = useStateContext();
 
   return (
-    <div>
+    <div className={currentMode === 'Dark' ? 'dark' : ''}>
       <BrowserRouter>
         <div className='flex relative dark:bg-main-dark-bg'>
           <div className='fixed right-4 bottom-4' style={{ zIndex: '1000' }}>
             <TooltipComponent content='Settings' position='Top'>
-              <button type='button' style={{ background: 'blue', borderRadius: '50%' }} className='text-3xl p-3 hover:drop-shadow-xl hover:bg-light-gray text-white'>
+              <button type='button' onClick={() => setThemeSettings(true)} style={{ background: currentColor, borderRadius: '50%' }} className='text-3xl p-3 hover:drop-shadow-xl hover:bg-light-gray text-white'>
                 <FiSettings />
               </button>
             </TooltipComponent>
@@ -31,12 +31,13 @@ const App = () => {
               <Sidebar />
             </div>
           )}
-          <div className={`'dark:bg-main-bg bg-main-bg min-h-screen w-full ${activeMenu ? 'md:ml-72' : 'flex-2'}`}>
+          <div className={`dark:bg-main-dark-bg bg-main-bg min-h-screen w-full ${activeMenu ? 'md:ml-72' : 'flex-2'}`}>
             <div className='fixed md:static bg-main-bg dark:bg-main-dark-bg navbar w-full'>
               <Navbar />
             </div>
 
             <div>
+              {themeSettings && <ThemeSettings />}
               <Routes>
                 <Route path='/' element={<Ecommerce />} />
                 <Route path='/ecommerce' element={<Ecommerce />} />
